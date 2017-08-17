@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  containo.api:
+    image: containo.api
+    build:
+      context: ./Containo.API
+      dockerfile: Dockerfile
