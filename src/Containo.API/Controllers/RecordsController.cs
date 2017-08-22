@@ -1,0 +1,15 @@
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Containo.API.Controllers
+{
+    [Produces("application/json")]
+    [Route("api/Records")]
+    public class RecordsController : Controller
+    {
+        public OkObjectResult Get()
+        {
+            return Ok(new List<string> { "The Same Sun" });
+        }
+    }
+}
