@@ -18,29 +18,43 @@ namespace Containo.API.Controllers
         /// </summary>
         /// <response code="200">Returns list of all running containers</response>
         [HttpGet]
-        [ProducesResponseType(typeof(List<Container>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(List<Container>), (int) HttpStatusCode.OK)]
         public async Task<ActionResult> Get()
         {
-            var dockerClusterEndpoint = new Uri("npipe://./pipe/docker_engine");
+            try
+            {
+                var client = GetDockerClient();
+                var containersListParameters = new ContainersListParameters
+                {
+                    All = true
+                };
+
+                var containers = await client.Containers.ListContainersAsync(containersListParameters);
+
+                var runningContainers = containers.Select(container => new Container
+                {
+                    Id = container.ID,
+                    Image = container.Image,
+                    Status = container.Status,
+                    Labels = container.Labels,
+                    Names = container.Names,
+                    State = container.State
+                }).ToList();
+
+                return Ok(runningContainers);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new {ErrorMessage = ex.Message});
+            }
+        }
+
+        private static DockerClient GetDockerClient()
+        {
+            var dockerUri = Environment.GetEnvironmentVariable("DOCKER_URI");
+            var dockerClusterEndpoint = new Uri(dockerUri);
             var client = new DockerClientConfiguration(dockerClusterEndpoint).CreateClient();
-            var containersListParameters = new ContainersListParameters
-            {
-                All = true
-            };
-
-            var containers = await client.Containers.ListContainersAsync(containersListParameters);
-
-            var runningContainers = containers.Select(container => new Container
-            {
-                Id = container.ID,
-                Image = container.Image,
-                Status = container.Status,
-                Labels = container.Labels,
-                Names = container.Names,
-                State = container.State
-            }).ToList();
-
-            return Ok(runningContainers);
+            return client;
         }
     }
 }
