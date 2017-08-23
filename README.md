@@ -3,7 +3,7 @@ Containo
 
 [![Build Status](https://travis-ci.com/tomkerkhove/containo.svg?token=GsSXSXe5xF8ZdYK5qExq&branch=master)](https://travis-ci.com/tomkerkhove/containo)[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/CoditEU/application-insights-connector/blob/master/LICENSE)
 
-Containo is a reference implementation to try out new technologies such as Docker, .NET Core, etc.
+Containo is a sandbox to try out new technologies such as Docker, .NET Core, etc.
 
 ![Docker](./media/docker.png)
 
