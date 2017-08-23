@@ -1,0 +1,10 @@
+language: csharp
+dotnet: 1.1.0
+dist: trusty
+script:
+- dotnet restore src/Containo.API
+- dotnet build src/Containo.API
+notifications:
+  email:
+    on_success: never
+    on_failure: always
