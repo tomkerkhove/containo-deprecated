@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Containo.API.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Records")]
+    [Route("api/records")]
     public class RecordsController : Controller
     {
         public OkObjectResult Get()
