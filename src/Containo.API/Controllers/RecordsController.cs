@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Containo.API.Controllers
@@ -7,9 +7,10 @@ namespace Containo.API.Controllers
     [Route("api/records")]
     public class RecordsController : Controller
     {
+        [HttpGet]
         public OkObjectResult Get()
         {
-            return Ok(new List<string> { "The Same Sun" });
+            return Ok(new List<string> {"The Same Sun"});
         }
     }
 }

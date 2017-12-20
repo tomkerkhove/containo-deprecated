@@ -1,10 +1,10 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.PlatformAbstractions;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Containo.API
@@ -15,8 +15,8 @@ namespace Containo.API
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("appsettings.json", false, true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
@@ -30,9 +30,12 @@ namespace Containo.API
             loggerFactory.AddDebug();
 
             app.UseMvc();
-
+            app.UseStaticFiles();
             app.UseSwagger();
-            app.UseSwaggerUI(swaggerUiOptions => { swaggerUiOptions.SwaggerEndpoint("/swagger/v1/swagger.json", "Containo API"); });
+            app.UseSwaggerUI(swaggerUiOptions =>
+            {
+                swaggerUiOptions.SwaggerEndpoint("/swagger/v1/swagger.json", "Containo API");
+            });
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -47,18 +50,17 @@ namespace Containo.API
                 Version = "v1",
                 Description = "API to manage the Containo platform"
             };
+
             services.AddSwaggerGen(swaggerGenerationOptions =>
             {
                 swaggerGenerationOptions.SwaggerDoc("v1", swaggerInfo);
                 swaggerGenerationOptions.DescribeAllEnumsAsStrings();
-                var documentationPath = GetDocumentationPath();
-                swaggerGenerationOptions.IncludeXmlComments(documentationPath);
             });
         }
 
         private static string GetDocumentationPath()
         {
-            return Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "Containo.API.xml");
+            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Containo.API.xml");
         }
     }
 }

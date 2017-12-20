@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Containo.API.Contracts;
 using Docker.DotNet;
 using Docker.DotNet.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -31,7 +31,7 @@ namespace Containo.API.Controllers
 
                 var containers = await client.Containers.ListContainersAsync(containersListParameters);
 
-                var runningContainers = containers.Select(container => new Container
+                var runningContainers = containers.Select(container => new Contracts.Container
                 {
                     Id = container.ID,
                     Image = container.Image,

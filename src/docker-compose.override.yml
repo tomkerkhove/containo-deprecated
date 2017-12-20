@@ -3,7 +3,7 @@ version: '3'
 services:
   containo.api:
     environment:
-      - DOCKER_URI=tcp://localhost:2375
       - ASPNETCORE_ENVIRONMENT=Development
+      - DOCKER_URI=npipe://./pipe/docker_engine
     ports:
       - "80"

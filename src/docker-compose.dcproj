@@ -1,12 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" Sdk="Microsoft.Docker.Sdk">
   <PropertyGroup Label="Globals">
-    <ProjectGuid>a805a08a-b4ce-4c85-afee-4f41606da58d</ProjectGuid>
+    <ProjectVersion>2.0</ProjectVersion>
+    <DockerTargetOS>Linux</DockerTargetOS>
+    <ProjectGuid>f2578758-91c2-4328-a9da-7c40ec28f70e</ProjectGuid>
     <DockerLaunchBrowser>True</DockerLaunchBrowser>
     <DockerServiceUrl>http://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>containo.api</DockerServiceName>
-    <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectVersion>2.0</ProjectVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.ci.build.yml" />
