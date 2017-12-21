@@ -2,7 +2,12 @@ version: '3'
 
 services:
   containo.api:
+    name: containo-api
     image: containo.api
     build:
       context: ./Containo.API
       dockerfile: Dockerfile
+networks:
+  default:
+    external:
+      name: api-ecosystem
