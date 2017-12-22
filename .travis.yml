@@ -4,6 +4,9 @@ dist: trusty
 script:
 - dotnet restore src/Containo.API
 - dotnet build src/Containo.API
+branches:
+  only:
+  - master
 notifications:
   email:
     on_success: never
