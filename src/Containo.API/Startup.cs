@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -56,11 +54,6 @@ namespace Containo.API
                 swaggerGenerationOptions.SwaggerDoc("v1", swaggerInfo);
                 swaggerGenerationOptions.DescribeAllEnumsAsStrings();
             });
-        }
-
-        private static string GetDocumentationPath()
-        {
-            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Containo.API.xml");
         }
     }
 }
