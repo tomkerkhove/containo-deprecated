@@ -17,9 +17,8 @@ In order to run this sample you'll need to prepare your environment:
 
 1. Create a new docker network - `docker network create api-ecosystem`
 2. Install [Kong](https://getkong.org/install/docker) that is using Cassandra or PostgreSQL as a data store. ([Docker image](https://store.docker.com/images/kong))
-3. Optionally, install [Konga](https://github.com/pantsel/konga#production-docker-image), which is a 3rd party tool, that gives you a Management UI. ([Docker image](https://store.docker.com/community/images/pantsel/konga))
-4. Deploy the containo API via Docker Compose in `src/docker-compose.yml`
-5. Create an API in Kong
+3. Deploy the containo API via Docker Compose in `src/docker-compose.yml`
+4. Create an API in Kong
 ```
 curl -i -X POST \
   --url http://localhost:8001/apis/ \
@@ -27,10 +26,12 @@ curl -i -X POST \
   --data 'uris=//containo' \
   --data 'upstream_url=http://containo:80/api'
 ```
-6. Start consuming the API
+5. Start consuming the API
 ```
 curl -i -X GET --url localhost:8000/containo/records
 ```
+
+Prefer a UI to manage Kong? You can either use [Kong Dashboard](https://github.com/PGBI/kong-dashboard), [Kong CLI](https://github.com/passos/kong-cli) or [KongDash](https://github.com/ajaysreedhar/kongdash) desktop client, which are 3rd party tools that give you a Management UI.
 
 **Important** - All containers need to be in the `api-ecosystem network`.
 
