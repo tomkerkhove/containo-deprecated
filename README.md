@@ -1,6 +1,8 @@
 Containo
 ===========================
 
+_This repository is dead, a new version of this scenario is coming soon._
+
 [![Build Status](https://travis-ci.org/tomkerkhove/containo.svg?branch=master)](https://travis-ci.org/tomkerkhove/containo)[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/CoditEU/application-insights-connector/blob/master/LICENSE)
 
 Containo is a fictious company that is building a product that provides a catalog of products to buy that 3rd parties can consume.
